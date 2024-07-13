@@ -2,7 +2,7 @@ name: Call Strapi API every minute
 
 on:
   schedule:
-    - cron: '*/1 * * * *' 
+    - cron: '*/1 * * * *'  # Triggers every minute
 
 jobs:
   call-api:
