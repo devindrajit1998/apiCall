@@ -1,0 +1,24 @@
+name: Call Strapi API every minute
+
+on:
+  schedule:
+    - cron: '*/1 * * * *' 
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Call Strapi API every minute
+        run: |
+          for i in {1..5}
+          do
+            echo "Calling Strapi API at $(date)"
+            curl -X GET "https://ecomstrapilatest.onrender.com/api/categories" \
+                 -H "Authorization: Bearer ${{ secrets.STRAPI_API_TOKEN }}" \
+                 -H "Content-Type: application/json"
+            sleep 60
+          done
