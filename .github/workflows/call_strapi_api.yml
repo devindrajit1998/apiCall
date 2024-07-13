@@ -1,6 +1,9 @@
 name: Call Strapi API every minute
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '*/1 * * * *'  # Triggers every minute
 
@@ -11,6 +14,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Print environment variables
+        run: env
 
       - name: Call Strapi API every minute
         run: |
